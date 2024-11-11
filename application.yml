@@ -1,0 +1,21 @@
+server:
+  port: 9102
+spring:   # 服务名称
+  application:
+    name: myshop-web
+eureka:
+  client:
+    fetch-registry: true # 是否需要从Eureka获取注册信息
+    register-with-eureka: true # 是否需要把该服务注册到Eureka
+    service-url:  # 暴露Eureka注册地址
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    # 优先使用该服务的IP地址注册到Eureka，在生产环境建议改为true
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
+myshop-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
